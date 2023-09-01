@@ -17,7 +17,7 @@ function EditTransactionForm({ transaction, onSave, onCancel }) {
 
     const handleSave = () => {
         onSave(editedTransaction);
-        dispatch(updateTransaction({ id: transaction.id, updatedTransaction: editedTransaction }));
+        dispatch(updateTransaction({ id: transaction.invoiceNumber, updatedTransaction: editedTransaction }));
     };
 
     return (
@@ -41,6 +41,7 @@ function EditTransactionForm({ transaction, onSave, onCancel }) {
                     value={editedTransaction.invoiceNumber}
                     onChange={handleFieldChange}
                     className='p-2 bg-gray-300 rounded'
+                    disabled
                 />
             </div>
             <div className='flex gap-5 items-center justify-center ml-28 p-1'>

@@ -8,6 +8,10 @@ import { AiFillHome } from 'react-icons/ai'
 function TransactionDetailPage() {
     const { id } = useParams();
     const dispatch = useDispatch();
+    const updatedTransaction = useSelector((state) => {
+        const updatedTransactionId = id;
+        return state.transactions.find(t => t.id === updatedTransactionId)
+    })
     const transaction = useSelector(state =>
         state.transactions?.find(t => t.invoiceNumber === id)
     );
@@ -26,7 +30,7 @@ function TransactionDetailPage() {
     };
 
     const handleSave = (updatedTransaction) => {
-        dispatch(updateTransaction({ id: transaction.id, updatedTransaction }));
+        dispatch(updateTransaction({ id: transaction.invoiceNumber, updatedTransaction }));
         setIsEditing(false);
     };
     return (
@@ -74,7 +78,6 @@ function TransactionDetailPage() {
                         </p>
                         <button onClick={handleEditClick} className='bg-gray-400 hover:bg-gray-200 px-6 py-2 rounded-md flex-none mt-10'>Edit</button>
                     </div>
-                    {console.log(transaction.status)}
                 </>
             }
 

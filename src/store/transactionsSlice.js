@@ -7,7 +7,7 @@ const transactionsSlice = createSlice({
     reducers: {
         updateTransaction(state, action) {
             const { id, updatedTransaction } = action.payload;
-            const index = state.findIndex(transaction => transaction.id === id);
+            const index = state.findIndex(transaction => transaction.invoiceNumber === id);
             if (index !== -1) {
                 state[index] = { ...state[index], ...updatedTransaction };
             }

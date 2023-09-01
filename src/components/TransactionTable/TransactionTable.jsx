@@ -6,11 +6,11 @@ import Status from '../Status/Status';
 import UserNameCard from '../UserNameCard/UserNameCard';
 import { Link } from 'react-router-dom';
 import ActionButton from '../ActionButton/ActionButton';
+import { useSelector } from 'react-redux';
 
-const TransactionTable = ({ transactions }) => {
+const TransactionTable = () => {
     const [sortConfig, setSortConfig] = useState({ key: '', direction: 'asc' });
-
-
+    const transactions = useSelector(state => state.transactions);
     const handleSort = (key) => {
         let direction = 'asc';
         if (sortConfig.key === key && sortConfig.direction === 'asc') {
@@ -78,7 +78,7 @@ const TransactionTable = ({ transactions }) => {
                         <td className='py-2 '>₹ {transaction.amount}</td>
                         <td className='py-2 '>{transaction.usdEquivalent}</td>
                         <td className='py-2 '><Status status={transaction.status} /></td>
-                        <td className='py-2 relative'><ActionButton /></td>
+                        <td className='py-2 relative'><ActionButton id={transaction.invoiceNumber} /></td>
                     </tr>
                 ))}
             </tbody>

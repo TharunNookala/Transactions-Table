@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
 import { PiArrowsDownUp } from 'react-icons/pi'
-import { US } from 'country-flag-icons/react/3x2'
 import Status from '../Status/Status';
-// import CountryFlags from '../CountryFlags/CountryFlags';
 import UserNameCard from '../UserNameCard/UserNameCard';
 import { Link } from 'react-router-dom';
 import ActionButton from '../ActionButton/ActionButton';
@@ -67,13 +65,14 @@ const TransactionTable = () => {
                                 {transaction.invoiceNumber}
                             </Link>
                         </td>
-                        <td className='flex items-center gap-2  py-2'>
-                            <US title="United States" className="w-6 h-6" /> {transaction.payer.name}
+                        <td className='text-center'>
+                            {/* <US title="United States" className="w-6 h-6" /> {transaction.payer.name} */}
 
-                            {/* <UserNameCard country={transaction.payer.country} name={transaction.payer.name} /> */}
+                            <UserNameCard person={transaction.payer} />
                         </td>
                         <td className='text-center '>
-                            <US title="United States" className="w-6 h-6" /> {transaction.payee.name}
+                            {/* <US title="United States" className="w-6 h-6" /> {transaction.payee.name} */}
+                            <UserNameCard person={transaction.payee} />
                         </td>
                         <td className='py-2 '>₹ {transaction.amount}</td>
                         <td className='py-2 '>{transaction.usdEquivalent}</td>

@@ -1,11 +1,21 @@
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
+import Select from 'react-select'
+import countryList from 'react-select-country-list'
 import { useDispatch } from 'react-redux';
 import { updateTransaction } from '../../store/transactionsSlice';
-import CountryFlags from '../CountryFlags/CountryFlags';
 
 function EditTransactionForm({ transaction, onSave, onCancel }) {
     const dispatch = useDispatch();
     const [editedTransaction, setEditedTransaction] = useState(transaction);
+    const [payerCountryCode, setPayerCountryCode] = useState('')
+    const [payeeCountryCode, setPayeeCountryCode] = useState('')
+    const options = useMemo(() => countryList().getData(), [])
+    const payerCountryHandler = value => {
+        setPayerCountryCode(value)
+    }
+    const payeeCountryHandler = value => {
+        setPayeeCountryCode(value)
+    }
 
     const handleFieldChange = event => {
         const { name, value } = event.target;
@@ -44,7 +54,7 @@ function EditTransactionForm({ transaction, onSave, onCancel }) {
                     disabled
                 />
             </div>
-            <div className='flex gap-5 items-center justify-center ml-28 p-1'>
+            <div className='flex gap-5 items-center justify-center ml-9 p-1'>
                 <label className='text-lg font-semibold'>Payer Name :</label>
                 <input
                     type="text"
@@ -53,9 +63,12 @@ function EditTransactionForm({ transaction, onSave, onCancel }) {
                     onChange={handleFieldChange}
                     className='p-2 bg-gray-300 rounded'
                 />
-                <CountryFlags countryCode={editedTransaction.payer.country} />
             </div>
-            <div className='flex gap-5 items-center justify-center ml-28 p-1'>
+            <div className='flex gap-5 items-center justify-center ml-10 p-1'>
+                <label className='text-lg font-semibold'>Payer Country :</label>
+                <Select options={options} value={payerCountryCode} onChange={payerCountryHandler} className='w-1/4' />
+            </div>
+            <div className='flex gap-5 items-center justify-center ml-10 p-1'>
                 <label className='text-lg font-semibold'>Payee Name :</label>
                 <input
                     type="text"
@@ -64,7 +77,10 @@ function EditTransactionForm({ transaction, onSave, onCancel }) {
                     onChange={handleFieldChange}
                     className='p-2 bg-gray-300 rounded'
                 />
-                <CountryFlags countryCode={editedTransaction.payee.country} />
+            </div>
+            <div className='flex gap-5 items-center justify-center ml-10 p-1'>
+                <label className='text-lg font-semibold'>Payer Country :</label>
+                <Select options={options} value={payeeCountryCode} onChange={payeeCountryHandler} className='w-1/4' />
             </div>
             <div className='flex gap-5 items-center justify-center ml-16 p-1'>
                 <label className='text-lg font-semibold'>Amount :</label>

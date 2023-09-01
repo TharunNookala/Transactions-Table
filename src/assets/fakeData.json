@@ -1,0 +1,145 @@
+[
+    {
+        "transactionDate": "2023-08-31",
+        "invoiceNumber": "INV001",
+        "payer": {
+            "name": "John Doe",
+            "country": "US"
+        },
+        "payee": {
+            "name": "Jane Smith",
+            "country": "GB"
+        },
+        "amount": 500,
+        "usdEquivalent": 6.5,
+        "status": [
+            "first"
+        ]
+    },
+    {
+        "transactionDate": "2023-08-30",
+        "invoiceNumber": "INV002",
+        "payer": {
+            "name": "Alice Johnson",
+            "country": "US"
+        },
+        "payee": {
+            "name": "Bob Brown",
+            "country": "AU"
+        },
+        "amount": 750,
+        "usdEquivalent": 7.2,
+        "status": [
+            "first",
+            "second"
+        ]
+    },
+    {
+        "transactionDate": "2023-08-29",
+        "invoiceNumber": "INV003",
+        "payer": {
+            "name": "Eve Davis",
+            "country": "CA"
+        },
+        "payee": {
+            "name": "Michael Wilson",
+            "country": "US"
+        },
+        "amount": 300,
+        "usdEquivalent": 5.8,
+        "status": [
+            "first",
+            "second",
+            "third"
+        ]
+    },
+    {
+        "transactionDate": "2023-08-28",
+        "invoiceNumber": "INV004",
+        "payer": {
+            "name": "Sarah Lee",
+            "country": "SG"
+        },
+        "payee": {
+            "name": "David Garcia",
+            "country": "MY"
+        },
+        "amount": 1000,
+        "usdEquivalent": 8.0,
+        "status": [
+            "first",
+            "second"
+        ]
+    },
+    {
+        "transactionDate": "2023-08-27",
+        "invoiceNumber": "INV005",
+        "payer": {
+            "name": "Chris Martin",
+            "country": "GB"
+        },
+        "payee": {
+            "name": "Olivia White",
+            "country": "CA"
+        },
+        "amount": 450,
+        "usdEquivalent": 6.2,
+        "status": [
+            "first"
+        ]
+    },
+    {
+        "transactionDate": "2023-08-26",
+        "invoiceNumber": "INV006",
+        "payer": {
+            "name": "Alexandra Turner",
+            "country": "AU"
+        },
+        "payee": {
+            "name": "William Clark",
+            "country": "US"
+        },
+        "amount": 650,
+        "usdEquivalent": 7.0,
+        "status": [
+            "first"
+        ]
+    },
+    {
+        "transactionDate": "2023-08-25",
+        "invoiceNumber": "INV007",
+        "payer": {
+            "name": "James Wilson",
+            "country": "CA"
+        },
+        "payee": {
+            "name": "Sophia Johnson",
+            "country": "GB"
+        },
+        "amount": 800,
+        "usdEquivalent": 7.5,
+        "status": [
+            "first",
+            "second",
+            "third"
+        ]
+    },
+    {
+        "transactionDate": "2023-08-24",
+        "invoiceNumber": "INV008",
+        "payer": {
+            "name": "Emma Brown",
+            "country": "US"
+        },
+        "payee": {
+            "name": "Liam Davis",
+            "country": "AU"
+        },
+        "amount": 550,
+        "usdEquivalent": 6.8,
+        "status": [
+            "first",
+            "second"
+        ]
+    }
+]

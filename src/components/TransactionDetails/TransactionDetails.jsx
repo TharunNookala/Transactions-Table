@@ -1,9 +1,9 @@
-// import transactions from '../../../src/assets/fakeData.json'
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import EditTransactionForm from '../EditTransactionForm/EditTransactionForm';
 import { useState } from 'react';
 import { updateTransaction } from '../../store/transactionsSlice';
+import { AiFillHome } from 'react-icons/ai'
 
 function TransactionDetailPage() {
     const { id } = useParams();
@@ -32,6 +32,7 @@ function TransactionDetailPage() {
     return (
         <div className='flex flex-col items-center gap-3 p-4 w-screen h-screen'>
             <div className='bg-indigo-100 w-full flex items-center justify-evenly p-4'>
+                <Link to="/"><AiFillHome size={25} className='hover:text-gray-500' /></Link>
                 <h2 className='text-xl font-bold'>Transaction Details of {transaction.invoiceNumber}</h2>
                 <p className='text-xl font-semibold'>Transaction Date: {transaction.transactionDate}</p>
             </div>
@@ -66,12 +67,14 @@ function TransactionDetailPage() {
                             <span className='text-base text-gray-500 italic'> {transaction.usdEquivalent}
                             </span>
                         </p>
+
                         <p className='text-xl font-semibold flex gap-5 items-center justify-center p-1 ml-16'>Status :
-                            <span className='text-base text-gray-500 italic'> {transaction.status}
+                            <span className='text-base text-gray-500 italic'> {transaction.status.join(', ')}
                             </span>
                         </p>
                         <button onClick={handleEditClick} className='bg-gray-400 hover:bg-gray-200 px-6 py-2 rounded-md flex-none mt-10'>Edit</button>
                     </div>
+                    {console.log(transaction.status)}
                 </>
             }
 

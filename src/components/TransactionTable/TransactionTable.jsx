@@ -68,16 +68,16 @@ const TransactionTable = ({ transactions }) => {
                             </Link>
                         </td>
                         <td className='flex items-center gap-2  py-2'>
-                            {/* <US title="United States" className="w-6 h-6" /> {transaction.payer.name} */}
+                            <US title="United States" className="w-6 h-6" /> {transaction.payer.name}
 
-                            <UserNameCard country={transaction.payer.country} name={transaction.payer.name} />
+                            {/* <UserNameCard country={transaction.payer.country} name={transaction.payer.name} /> */}
                         </td>
-                        <td className=''>
+                        <td className='text-center '>
                             <US title="United States" className="w-6 h-6" /> {transaction.payee.name}
                         </td>
                         <td className='py-2 '>₹ {transaction.amount}</td>
                         <td className='py-2 '>{transaction.usdEquivalent}</td>
-                        <td className='py-2'><Status status={transaction.status} /></td>
+                        <td className='py-2 '><Status status={transaction.status} /></td>
                         <td className='py-2 relative'><ActionButton /></td>
                     </tr>
                 ))}

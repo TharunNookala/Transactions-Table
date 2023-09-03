@@ -9,11 +9,10 @@ function TransactionDetailPage() {
     const { id } = useParams();
     const dispatch = useDispatch();
     const updatedTransaction = useSelector((state) => {
-        const updatedTransactionId = id;
-        return state.transactions.find(t => t.id === updatedTransactionId)
+        return state.transactions.transactions.find(t => t.invoiceNumber === id)
     })
     const transaction = useSelector(state =>
-        state.transactions?.find(t => t.invoiceNumber === id)
+        state.transactions?.transactions?.find(t => t.invoiceNumber === id)
     );
     const [isEditing, setIsEditing] = useState(false);
 
@@ -29,9 +28,10 @@ function TransactionDetailPage() {
         setIsEditing(false);
     };
 
-    const handleSave = (updatedTransaction) => {
-        dispatch(updateTransaction({ id: transaction.invoiceNumber, updatedTransaction }));
+    const handleSave = (updatedTransactionData) => {
+        dispatch(updateTransaction({ id: updatedTransactionData.invoiceNumber, updatedTransaction: updatedTransactionData }));
         setIsEditing(false);
+        console.log(updatedTransactionData)
     };
     return (
         <div className='flex flex-col items-center gap-3 p-4 w-screen h-screen'>

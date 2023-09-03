@@ -7,31 +7,90 @@ import { updateTransaction } from '../../store/transactionsSlice';
 function EditTransactionForm({ transaction, onSave, onCancel }) {
     const dispatch = useDispatch();
     const [editedTransaction, setEditedTransaction] = useState(transaction);
-    const [payerCountryCode, setPayerCountryCode] = useState('')
-    const [payeeCountryCode, setPayeeCountryCode] = useState('')
+    const [payerName, setPayerName] = useState(transaction.payer.name)
+    const [payeeName, setPayeeName] = useState(transaction.payee.name)
+    const [payerCountryCode, setPayerCountryCode] = useState(transaction.payer.country)
+    const [payeeCountryCode, setPayeeCountryCode] = useState(transaction.payee.country)
     const options = useMemo(() => countryList().getData(), [])
     const payerCountryHandler = value => {
-        setPayerCountryCode(value)
-    }
-    const payeeCountryHandler = value => {
-        setPayeeCountryCode(value)
-    }
-
-    const handleFieldChange = event => {
-        const { name, value } = event.target;
+        setPayerCountryCode(value);
         setEditedTransaction(prevTransaction => ({
             ...prevTransaction,
-            [name]: value
+            payer: {
+                ...prevTransaction.payer,
+                country: value.label
+            }
         }));
+    }
+    const payeeCountryHandler = value => {
+        setPayeeCountryCode(value);
+        setEditedTransaction(prevTransaction => ({
+            ...prevTransaction,
+            payee: {
+                ...prevTransaction.payee,
+                country: value.label
+            }
+        }));
+    }
+
+    const handlePayerNameChange = e => {
+        setPayerName(e.target.value)
+        setEditedTransaction((prevTransaction) => ({
+            ...prevTransaction,
+            payer: {
+                ...prevTransaction.payer,
+                name: e.target.value,
+            },
+        }));
+    }
+    const handlePayeeNameChange = e => {
+        setPayeeName(e.target.value)
+        setEditedTransaction((prevTransaction) => ({
+            ...prevTransaction,
+            payee: {
+                ...prevTransaction.payee,
+                name: e.target.value,
+            },
+        }));
+    }
+    const handleFieldChange = event => {
+        const { name, value } = event.target;
+        // console.log(event.target)
+        // const [objectName, propertyName] = name.split('.');
+        // handlePayeeNameChange(event)
+        // handlePayerNameChange(event)
+        // if (name === "payer.name") {
+        //     setEditedTransaction((prevTransaction) => ({
+        //         ...prevTransaction,
+        //         [objectName]: {
+        //             ...prevTransaction[objectName],
+        //             [propertyName]: value,
+        //         },
+        //     }));
+        // } else if (name === "payee.name") {
+        //     setEditedTransaction((prevTransaction) => ({
+        //         ...prevTransaction,
+        //         [objectName]: {
+        //             ...prevTransaction[objectName],
+        //             [propertyName]: value,
+        //         },
+        //     }));
+        // } else {
+        setEditedTransaction((prevTransaction) => ({
+            ...prevTransaction,
+            [name]: value,
+        }));
+        // }
     };
 
     const handleSave = () => {
         onSave(editedTransaction);
-        dispatch(updateTransaction({ id: transaction.invoiceNumber, updatedTransaction: editedTransaction }));
+        dispatch(updateTransaction({ id: editedTransaction.invoiceNumber, updatedTransaction: editedTransaction }));
+        console.log(editedTransaction)
     };
 
     return (
-        <div className='border-2 p-4 bg-gray-100 w-1/2 rounded-md flex-flex-col space-y-8 items-center text-center'>
+        <div className='border-2 h-full p-4 bg-gray-100 w-1/2 rounded-md flex-flex-col space-y-8 items-center text-center'>
             <h3 className='text-xl font-bold text-center'>Edit Transaction</h3>
             <div className='flex gap-5 items-center justify-center p-1'>
                 <label className='text-lg font-semibold'>Transaction Date :</label>
@@ -59,8 +118,8 @@ function EditTransactionForm({ transaction, onSave, onCancel }) {
                 <input
                     type="text"
                     name="payer"
-                    value={editedTransaction.payer.name}
-                    onChange={handleFieldChange}
+                    value={payerName}
+                    onChange={handlePayerNameChange}
                     className='p-2 bg-gray-300 rounded'
                 />
             </div>
@@ -73,8 +132,8 @@ function EditTransactionForm({ transaction, onSave, onCancel }) {
                 <input
                     type="text"
                     name="payee"
-                    value={editedTransaction.payee.name}
-                    onChange={handleFieldChange}
+                    value={payeeName}
+                    onChange={handlePayeeNameChange}
                     className='p-2 bg-gray-300 rounded'
                 />
             </div>

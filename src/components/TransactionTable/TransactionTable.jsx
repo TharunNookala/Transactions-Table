@@ -8,7 +8,7 @@ import { useSelector } from 'react-redux';
 
 const TransactionTable = () => {
     const [sortConfig, setSortConfig] = useState({ key: '', direction: 'asc' });
-    const transactions = useSelector(state => state.transactions);
+    const transactions = useSelector(state => state.transactions.transactions);
     const handleSort = (key) => {
         let direction = 'asc';
         if (sortConfig.key === key && sortConfig.direction === 'asc') {
@@ -26,28 +26,28 @@ const TransactionTable = () => {
     });
 
     return (
-        <table className="w-[90%] text-center">
-            <thead className='table-auto w-full border-2'>
-                <tr className='bg-slate-200 w-full'>
+        <table className="md:w-[90%] text-center">
+            <thead className='table-auto w-full p-4'>
+                <tr className='bg-slate-200 w-full px-4'>
                     <th onClick={() => handleSort('transactionDate')} className='py-4'>
                         Transaction Date <button className="ml-1"><PiArrowsDownUp /></button>
                     </th>
                     <th onClick={() => handleSort('invoiceNumber')} className='py-4'>
                         Invoice Number <button className="ml-1"><PiArrowsDownUp /></button>
                     </th>
-                    <th onClick={() => handleSort('invoiceNumber')} className='py-4'>
+                    <th onClick={() => handleSort('payer')} className='py-4'>
                         Payer <button className="ml-1"><PiArrowsDownUp /></button>
                     </th>
-                    <th onClick={() => handleSort('invoiceNumber')} className='py-4'>
+                    <th onClick={() => handleSort('payee')} className='py-4'>
                         Payee <button className="ml-1"><PiArrowsDownUp /></button>
                     </th>
-                    <th onClick={() => handleSort('invoiceNumber')} className='py-4'>
+                    <th onClick={() => handleSort('amount')} className='py-4'>
                         Amount <button className="ml-1"><PiArrowsDownUp /></button>
                     </th>
-                    <th onClick={() => handleSort('invoiceNumber')} className='py-4'>
+                    <th onClick={() => handleSort('usdEquivalent')} className='py-4'>
                         USD Equivalent <button className="ml-1"><PiArrowsDownUp /></button>
                     </th>
-                    <th onClick={() => handleSort('invoiceNumber')} className='py-4'>
+                    <th onClick={() => handleSort('status')} className='py-4'>
                         Status <button className="ml-1"><PiArrowsDownUp /></button>
 
                     </th>
@@ -66,12 +66,9 @@ const TransactionTable = () => {
                             </Link>
                         </td>
                         <td className='text-center'>
-                            {/* <US title="United States" className="w-6 h-6" /> {transaction.payer.name} */}
-
                             <UserNameCard person={transaction.payer} />
                         </td>
                         <td className='text-center '>
-                            {/* <US title="United States" className="w-6 h-6" /> {transaction.payee.name} */}
                             <UserNameCard person={transaction.payee} />
                         </td>
                         <td className='py-2 '>₹ {transaction.amount}</td>

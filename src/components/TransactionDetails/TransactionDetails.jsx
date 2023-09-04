@@ -8,9 +8,6 @@ import { AiFillHome } from 'react-icons/ai'
 function TransactionDetailPage() {
     const { id } = useParams();
     const dispatch = useDispatch();
-    const updatedTransaction = useSelector((state) => {
-        return state.transactions.transactions.find(t => t.invoiceNumber === id)
-    })
     const transaction = useSelector(state =>
         state.transactions?.transactions?.find(t => t.invoiceNumber === id)
     );
@@ -31,22 +28,22 @@ function TransactionDetailPage() {
     const handleSave = (updatedTransactionData) => {
         dispatch(updateTransaction({ id: updatedTransactionData.invoiceNumber, updatedTransaction: updatedTransactionData }));
         setIsEditing(false);
-        console.log(updatedTransactionData)
+        // console.log(updatedTransactionData)
     };
     return (
         <div className='flex flex-col items-center gap-3 p-4 w-screen h-screen'>
             <div className='bg-indigo-100 w-full flex items-center justify-evenly p-4'>
                 <Link to="/"><AiFillHome size={25} className='hover:text-gray-500' /></Link>
-                <h2 className='text-xl font-bold'>Transaction Details of {transaction.invoiceNumber}</h2>
-                <p className='text-xl font-semibold'>Transaction Date: {transaction.transactionDate}</p>
+                <h2 className='text-lg md:text-xl font-bold'>Transaction Details of {transaction.invoiceNumber}</h2>
+                <p className='hidden md:block md:text-xl font-semibold'>Transaction Date: {transaction.transactionDate}</p>
             </div>
             {isEditing ? (
-                <div className='bg-gray-200 w-full flex justify-center h-full '>
+                <div className='bg-gray-200 w-full flex justify-center h-screen '>
                     <EditTransactionForm transaction={transaction} onSave={handleSave} onCancel={handleCancelEdit} />
                 </div>
             ) :
                 <>
-                    <div className='flex flex-col w-1/2 h-full bg-sky-100 items-center justify-start pt-16 p-2'>
+                    <div className='flex flex-col md:w-3/5 xl:w-1/2 h-full bg-sky-100 items-center justify-start pt-16 p-2'>
                         <p className='text-xl font-semibold flex gap-5 items-center justify-center p-1'>Transaction Date :
                             <span className='text-base text-gray-500 italic'> {transaction.transactionDate}
                             </span>
